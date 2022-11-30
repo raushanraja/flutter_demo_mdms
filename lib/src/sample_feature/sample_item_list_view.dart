@@ -5,7 +5,6 @@ import 'sample_item.dart';
 import 'sample_item_details_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 /// Displays a list of SampleItems.
 class SampleItemListView extends StatelessWidget {
   const SampleItemListView({
@@ -21,8 +20,7 @@ class SampleItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       
-       // Use the AppLocalizations to retrieve the correct localized title
+        // Use the AppLocalizations to retrieve the correct localized title
         title: Text(AppLocalizations.of(context)!.appTitle),
         actions: [
           IconButton(

@@ -1,3 +1,20 @@
 {
-  "appTitle": "एम ० डी ० एम"
+  "appTitle": "एम०डी०एम",
+  "class_i_title": "वर्ग 1 से 5",
+  "class_ii_title":"वर्ग 6 से 8",
+  "date_field_label": "दिनांक",
+  "number_of_students_field_label": "छात्रों की संख्या",
+  "save_button_label": "रक्षित करें",
+  "rice":"चावल",
+  "pulse":"दाल",
+  "spices":"मसाला",
+  "vegetabales":"सब्ज़ी",
+  "oil":"तेल",
+  "firewood":"जलावन",
+  "item":"सामान",
+  "rate":"नियमित दर",
+  "quantity":"मात्रा",
+  "amount":"राशि",
+  "input_page_main_title":"मधयाह्न भोजन व्यय",
+  "total": "कुल व्यय"
 }

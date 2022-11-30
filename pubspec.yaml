@@ -10,12 +10,16 @@ environment:
   sdk: '>=2.18.5 <3.0.0'
 
 dependencies:
+  getwidget: ^2.0.4
+  freezed_annotation:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
 
 dev_dependencies:
+  freezed:
+  build_runner:
   flutter_test:
     sdk: flutter
 
@@ -30,3 +34,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/price_chart.json

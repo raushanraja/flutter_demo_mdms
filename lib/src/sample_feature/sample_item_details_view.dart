@@ -5,8 +5,7 @@ class SampleItemDetailsView extends StatelessWidget {
   const SampleItemDetailsView({super.key});
 
   static const routeName = '/sample_item';
-  
-  
+
   @override
   Widget build(BuildContext context) {
     // Print current locale

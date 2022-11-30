@@ -1,0 +1,153 @@
+{
+  "class": {
+    "to5": {
+      "items": {
+        "chaawal": {
+          "item": "chaawal",
+          "hi": "चावल",
+          "wps": 0.1,
+          "rpk": 0,
+          "aps": 0
+        },
+        "daal": {
+          "item": "daal",
+          "hi": "दाल",
+          "wps": 20.0,
+          "rpk": 103.0,
+          "aps": 2.06
+        },
+        "masala": {
+          "item": "masala",
+          "hi": "मसाला",
+          "wps": 1,
+          "rpk": 1,
+          "aps": 0.49
+        },
+        "sabji": {
+          "item": "sabji",
+          "hi": "सब्ज़ी",
+          "wps": 50.0,
+          "rpk": 22.0,
+          "aps": 1.10
+        },
+        "tel": {
+          "item": "tel",
+          "hi": "तेल",
+          "wps": 5.0,
+          "rpk": 121.0,
+          "aps": 0.60
+        },
+        "jalawan": {
+          "item": "jalawan",
+          "hi": "जलावन",
+          "wps": 100.0,
+          "rpk": 12.0,
+          "aps": 1.20
+        }
+      },
+      "weekly": {
+        "common": {
+          "chaawal": [
+            "चावल",
+            0.1,
+            "--"
+          ],
+          "daal": [
+            "दाल",
+            0.2,
+            2.06
+          ],
+          "masala": [
+            "मसाला",
+            "--",
+            0.49
+          ],
+          "sabji": [
+            "सब्ज़ी",
+            0.5,
+            1.1
+          ],
+          "tel": [
+            "तेल",
+            0.005,
+            0.6
+          ],
+          "jalawan": [
+            "जलावन",
+            0.1,
+            1.2
+          ]
+        },
+        "monday": {},
+        "tuesday": {
+          "daal": [
+            "दाल",
+            0.0,
+            0.06
+          ],
+          "sabji": [
+            "सब्ज़ी",
+            0.5,
+            0.16
+          ]
+        },
+        "wednesday": {},
+        "thursday": {},
+        "friday": {
+          "daal": [
+            "दाल",
+            0.2,
+            2.06
+          ],
+          "sabji": [
+            "सब्ज़ी",
+            0.5,
+            3.16
+          ]
+        },
+        "saturday": {}
+      }
+    },
+    "to8": {
+      "items": {
+        "chaawal": {
+          "item": "chaawal",
+          "hi": "चावल",
+          "wps": 0.15,
+          "rpk": 0,
+          "aps": 0
+        },
+        "daal": {
+          "item": "daal",
+          "wps": 30.0,
+          "rpk": 103.0,
+          "aps": 3.09
+        },
+        "sabji": {
+          "item": "sabji",
+          "wps": 75.0,
+          "rpk": 22.0,
+          "aps": 1.65
+        },
+        "tel": {
+          "item": "tel",
+          "wps": 7.5,
+          "rpk": 121.0,
+          "aps": 0.9
+        },
+        "masala": {
+          "item": "masala",
+          "wps": 1,
+          "rpk": 1,
+          "aps": 0.73
+        },
+        "jalawan": {
+          "item": "jalawan",
+          "wps": 150.0,
+          "rpk": 12.0,
+          "aps": 1.80
+        }
+      }
+    }
+  }
+}

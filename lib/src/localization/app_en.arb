@@ -1,6 +1,38 @@
 {
-  "appTitle": "mdms",
+  "appTitle": "M.D.M",
   "@appTitle": {
     "description": "The title of the application"
-  }
+  },
+  "class_i_title": "Class 1 to 5",
+  "@class_i_title":{
+    "description": "The title of class 1 to 5 button & Screen"
+  },
+  "class_ii_title": "Class 6 to 8",
+  "@class_ii_title":{
+    "description": "The title of class 6 to 8 button & Screen"
+  },
+  "date_field_label": "date",
+  "@date_field_label":{
+    "description": "The label for date input field"
+  },
+  "number_of_students_field_label": "No. of student",
+  "@number_of_students_field_label":{
+    "description": "The label for number of student input field"
+  },
+  "save_button_label": "Save",
+  "@save_button_label":{
+    "description": "The label for save button"
+  },
+  "rice":"Rice",
+  "pulse":"Pulse",
+  "spices":"Spices/Ingredients",
+  "vegetabales":"Vegetabales",
+  "oil":"Cooking Oil",
+  "firewood":"Firewood",
+  "item":"Item",
+  "rate":"Rate",
+  "quantity":"Qty.",
+  "amount":"Amount",
+  "input_page_main_title":"Mid day meal expenses",
+  "total": "Total"
 }
