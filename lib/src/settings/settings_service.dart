@@ -10,7 +10,7 @@ class SettingsService {
   Future<ThemeMode> themeMode() async => ThemeMode.system;
 
   /// Loads the User's preferred Locale from local or remote storage.
-  Future<Locale> locale() async => const Locale('en');
+  Future<Locale> locale() async => const Locale('hi');
 
   /// Persists the user's preferred ThemeMode to local or remote storage.
   Future<void> updateThemeMode(ThemeMode theme) async {

@@ -66,6 +66,7 @@ class _MDMFormState extends State<MDMForm> {
   DateTime date = DateTime.now();
   ThemeMode themeMode = ThemeMode.light;
   Map priceChart = getVpriceChart(day: 'monday');
+  String for_calss = 'to8';
   // Create a int field number_of_students
   // create a text controller for the text field
   final TextEditingController _num_of_student_controller =
@@ -77,6 +78,9 @@ class _MDMFormState extends State<MDMForm> {
     super.initState();
     // set the text of the text controller to the number of students
     _num_of_student_controller.text = '0';
+    for_calss = MDMRouteInfo.fromMap(
+            ModalRoute.of(context)!.settings.arguments as Map<String, String>)
+        .class_type;
     priceChart = getVpriceChart(day: weekday[date.weekday]!);
     themeMode = widget.controller.themeMode;
   }
@@ -248,10 +252,10 @@ class _MDMFormState extends State<MDMForm> {
                       GetTableDataRow(
                           AppLocalizations.of(context)!.pulse, "daal"),
                       GetTableDataRow(
+                          AppLocalizations.of(context)!.spices, "masala"),
+                      GetTableDataRow(
                           AppLocalizations.of(context)!.vegetabales, "sabji",
                           decorated: true),
-                      GetTableDataRow(
-                          AppLocalizations.of(context)!.spices, "masala"),
                       GetTableDataRow(AppLocalizations.of(context)!.oil, "tel",
                           decorated: true),
                       GetTableDataRow(
@@ -270,7 +274,7 @@ class _MDMFormState extends State<MDMForm> {
                   ),
                 ],
               ),
-
+              const Divider(),
               // Input Element
               CForm(context)
             ],
@@ -300,9 +304,11 @@ class _MDMFormState extends State<MDMForm> {
           // GetSizedBox(ItemRpk(item, priceChart, _num_of_student_controller)),
           item == 'masala'
               ? GetSizedBox('--', decorated: decorated)
-              : GetSizedBox(
-                  ItemWps(item, priceChart, _num_of_student_controller),
-                  decorated: decorated),
+              : item == 'jalawan'
+                  ? GetSizedBox('--', decorated: decorated)
+                  : GetSizedBox(
+                      ItemWps(item, priceChart, _num_of_student_controller),
+                      decorated: decorated),
           item == 'chaawal'
               ? GetSizedBox('--', decorated: decorated)
               : GetSizedBox(
@@ -332,116 +338,201 @@ class _MDMFormState extends State<MDMForm> {
     );
   }
 
-  Column CForm(BuildContext context) {
-    return Column(
-        // Set the mainAxisAlignment to center
-        mainAxisAlignment: MainAxisAlignment.center,
-        // Set the crossAxisAlignment to center
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // Create a list of widgets
-        children: <Widget>[
-          // Create  two form fields for date and number of students
-          // Create a form field for date
-          FormField(
-            // Set the builder
-            builder: (FormFieldState state) {
-              return InputDecorator(
-                decoration: InputDecoration(
-                  // Set the label text
-                  labelText: AppLocalizations.of(context)!.date_field_label,
-                ),
-                // Create a child
-                child: TextButton(
-                  // Set the onPressed
-                  onPressed: () => _selectDate(context),
-                  // Set the child
-                  child: Text(
-                    // Set the text
-                    '${date.toLocal()}'.split(' ')[0],
-                    // Set the style
-                    style: const TextStyle(
-                      // Set the color
-                      color: Colors.black,
+  Widget CForm(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Column(children: <Widget>[
+        // Add a background color
+        // Create  two form fields for date and number of students
+        // Create a form field for date
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Text(AppLocalizations.of(context)!.date_field_label),
+                  TextButton(
+                    // Set the onPressed
+                    onPressed: () => _selectDate(context),
+                    // Set the child
+                    child: Text(
+                      // Set the text
+                      '${date.toLocal()}'.split(' ')[0],
+                      // Set the style
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Text(AppLocalizations.of(context)!
+                      .number_of_students_field_label),
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    controller: _num_of_student_controller,
+                    decoration: const InputDecoration(
+                      // Set the border to bottom
+                      border: UnderlineInputBorder(),
+                      hintText: "Input number of students",
+                    ),
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                    // Add an onChanged listener
+                    onChanged: (value) => _num_of_student_chaged(value),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        // create a form field for number of students
+        // Create a button
+        Divider(),
+        SaveButton(
+            date: date, num_of_student_controller: _num_of_student_controller)
+      ]),
+    );
+  }
+
+  FormField<dynamic> NumberInput(BuildContext context) {
+    return FormField(
+      // Set the builder
+      builder: (FormFieldState state) {
+        return SizedBox(
+          // height: 10,
+          width: 300,
+          child: InputDecorator(
+            decoration: InputDecoration(
+              // Set the label text
+              labelText:
+                  AppLocalizations.of(context)!.number_of_students_field_label,
+            ),
+            // Create a child
+            child: Row(
+              // Set the mainAxisAlignment to center
+              mainAxisAlignment: MainAxisAlignment.center,
+              // Set the crossAxisAlignment to center
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // Create a list of widgets
+              children: [
+                // Create a TextButton
+                TextButton(
+                  // Set the onPressed
+                  onPressed: () {
+                    _decrement();
+                  },
+                  // Set the child
+                  child: const Text('-'),
                 ),
-              );
-            },
+                // Create a sized box
+                SizedBox(
+                  // Set the width to max
+                  width: 100,
+                  // Set the child
+                  child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: _num_of_student_controller,
+                      decoration: const InputDecoration(
+                        // Set the border
+                        border: OutlineInputBorder(),
+                        hintText: "Input number of students",
+                      ),
+                      // Add an onChanged listener
+                      onChanged: (value) => _num_of_student_chaged(value)),
+                ),
+                // Create a TextButton
+                TextButton(
+                  // Set the onPressed
+                  onPressed: () {
+                    _increment();
+                  },
+                  // Set the child
+                  child: const Text('+'),
+                ),
+              ],
+            ),
           ),
-          // create a form field for number of students
-          FormField(
-            // Set the builder
-            builder: (FormFieldState state) {
-              return InputDecorator(
-                decoration: InputDecoration(
-                  // Set the label text
-                  labelText: AppLocalizations.of(context)!
-                      .number_of_students_field_label,
+        );
+      },
+    );
+  }
+
+  FormField<dynamic> DateSelector(BuildContext context) {
+    return FormField(
+      // Set the builder
+      builder: (FormFieldState state) {
+        return SizedBox(
+          width: 80,
+          child: InputDecorator(
+            decoration: InputDecoration(
+              // Set the label text
+              labelText: AppLocalizations.of(context)!.date_field_label,
+            ),
+            // Create a child
+            child: TextButton(
+              // Set the onPressed
+              onPressed: () => _selectDate(context),
+              // Set the child
+              child: Text(
+                // Set the text
+                '${date.toLocal()}'.split(' ')[0],
+                // Set the style
+                style: const TextStyle(
+                  // Set the color
+                  color: Colors.black,
                 ),
-                // Create a child
-                child: Row(
-                  // Set the mainAxisAlignment to center
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // Set the crossAxisAlignment to center
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  // Create a list of widgets
-                  children: [
-                    // Create a TextButton
-                    TextButton(
-                      // Set the onPressed
-                      onPressed: () {
-                        _decrement();
-                      },
-                      // Set the child
-                      child: const Text('-'),
-                    ),
-                    // Create a sized box
-                    SizedBox(
-                      // Set the width to max
-                      width: 200,
-                      // width: ,
-                      // Set the child
-                      child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: _num_of_student_controller,
-                          decoration: const InputDecoration(
-                            // Set the border
-                            border: OutlineInputBorder(),
-                            hintText: "Input number of students",
-                          ),
-                          // Add an onChanged listener
-                          onChanged: (value) => _num_of_student_chaged(value)),
-                    ),
-                    // Create a TextButton
-                    TextButton(
-                      // Set the onPressed
-                      onPressed: () {
-                        _increment();
-                      },
-                      // Set the child
-                      child: const Text('+'),
-                    ),
-                  ],
-                ),
-              );
-            },
+              ),
+            ),
           ),
-          // Create a button
-          ElevatedButton(
-            // Set the onPressed
-            onPressed: () {
-              // Create a MDMInputs object
-              final MDMInput mdmInputs = MDMInput(
-                  // Set the date
-                  date,
-                  // Set the number of students
-                  int.tryParse(_num_of_student_controller.text) ?? 0);
-              // Create a Navigator
-              Navigator.pop(context, mdmInputs);
-            },
-            // Set the child
-            child: Text(AppLocalizations.of(context)!.save_button_label),
-          )
-        ]);
+        );
+      },
+    );
+  }
+}
+
+class SaveButton extends StatelessWidget {
+  const SaveButton({
+    Key? key,
+    required this.date,
+    required TextEditingController num_of_student_controller,
+  })  : _num_of_student_controller = num_of_student_controller,
+        super(key: key);
+
+  final DateTime date;
+  final TextEditingController _num_of_student_controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size.fromHeight(50), // NEW
+        ),
+        // Set the onPressed
+        onPressed: () {
+          // Create a MDMInputs object
+          final MDMInput mdmInputs = MDMInput(
+              // Set the date
+              date,
+              // Set the number of students
+              int.tryParse(_num_of_student_controller.text) ?? 0);
+          // Create a Navigator
+          Navigator.pop(context, mdmInputs);
+        },
+        // Set the child
+        child: Text(
+          AppLocalizations.of(context)!.save_button_label,
+          style: const TextStyle(fontSize: 20),
+        ),
+      ),
+    );
   }
 }

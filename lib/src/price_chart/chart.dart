@@ -162,8 +162,36 @@ final parsedJson = jsonDecode(jsonData);
 Map<String, dynamic> getVpriceChart({day}) {
   var common = parsedJson['class']['to5']['weekly']['common'];
   var dayData = parsedJson['class']['to5']['weekly'][day];
-  print(day);
-  print(dayData);
+  Map<String, dynamic> priceChart = {};
+  for (var item in common.keys) {
+    var itemData = common[item];
+    var itemName = itemData[0];
+    var itemWps = itemData[1];
+    var itemAps = itemData[2];
+    var itemRpk = 0.0;
+    if (dayData != null) {
+      if (dayData.containsKey(item)) {
+        itemWps = dayData[item][1];
+        itemAps = dayData[item][2];
+      }
+    }
+    priceChart[item] = {
+      'item': item,
+      'hi': itemName,
+      'wps': itemWps,
+      'rpk': itemRpk,
+      'aps': itemAps
+    };
+  }
+  // print(priceChart);
+  return priceChart;
+}
+
+
+// Create a method to get sunday price chart
+Map<String, dynamic> getVIIIpriceChart({day}) {
+  var common = parsedJson['class']['to5']['weekly']['common'];
+  var dayData = parsedJson['class']['to5']['weekly'][day];
   Map<String, dynamic> priceChart = {};
   for (var item in common.keys) {
     var itemData = common[item];
