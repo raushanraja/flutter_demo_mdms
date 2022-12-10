@@ -5,9 +5,8 @@ import 'package:mdms/src/home_buttons/home_buttons.dart';
 
 import 'MDM/mdm_input_view.dart';
 import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
-import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
+import 'package:mdms/src/data/services/settings.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {

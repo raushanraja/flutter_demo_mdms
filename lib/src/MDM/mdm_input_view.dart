@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // Import the localization package
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:mdms/src/settings/settings_controller.dart';
+import 'package:mdms/src/data/services/settings.dart';
 
 import 'mdm_inputs.dart';
 import '../price_chart/chart.dart';
@@ -72,17 +72,15 @@ class _MDMFormState extends State<MDMForm> {
   final TextEditingController _num_of_student_controller =
       TextEditingController();
 
-  // create a initstate
   @override
-  void initState() {
-    super.initState();
-    // set the text of the text controller to the number of students
+  void didChangeDependencies() {
     _num_of_student_controller.text = '0';
     for_calss = MDMRouteInfo.fromMap(
             ModalRoute.of(context)!.settings.arguments as Map<String, String>)
         .class_type;
     priceChart = getVpriceChart(day: weekday[date.weekday]!);
     themeMode = widget.controller.themeMode;
+    super.didChangeDependencies();
   }
 
   // create a dispose
@@ -130,7 +128,7 @@ class _MDMFormState extends State<MDMForm> {
   }
 
   void _num_of_student_chaged(String value) {
-    print(value);
+    // print(value);
     if (value != '-' || value != '.' || value != ',') {
       setState(() {
         _num_of_student_controller.text =
@@ -318,8 +316,8 @@ class _MDMFormState extends State<MDMForm> {
   }
 
   SizedBox GetSizedBox(name, {is_head = false, decorated = false}) {
-    print(tableHeadRowTextStyle);
-    print(themeMode.toString());
+    // print(tableHeadRowTextStyle);
+    // print(themeMode.toString());
     return SizedBox(
       height: 40,
       child: Container(
