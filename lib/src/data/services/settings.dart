@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 import 'package:mdms/src/data/models/settings/settings_hive.dart';
 
-final setting_box = Hive.box('settings');
+final settingBox = Hive.box('settings');
 
 // Create SettingsController to glue user settings to multiple Flutter Widgets.
 class SettingsController extends ChangeNotifier {
@@ -13,7 +13,7 @@ class SettingsController extends ChangeNotifier {
   // This prevents a sudden theme change when the app is first displayed.
   Future<void> loadSettings() async {
     Settings loadedSettings =
-        setting_box.get('custom', defaultValue: _settings);
+        settingBox.get('custom', defaultValue: _settings);
     if (_settings != loadedSettings) {
       _settings = loadedSettings;
       notifyListeners();
@@ -29,7 +29,7 @@ class SettingsController extends ChangeNotifier {
     if (newSettings == _settings) return;
     _settings = newSettings;
     notifyListeners();
-    await setting_box.put('custom', newSettings);
+    await settingBox.put('custom', newSettings);
   }
 
   // Update and persist the ThemeMode based on the user's selection.
@@ -38,7 +38,7 @@ class SettingsController extends ChangeNotifier {
     if (newThemeMode == _settings.themeModeEnum) return;
     _settings.themeMode = newThemeMode.name;
     notifyListeners();
-    await setting_box.put('custom', _settings);
+    await settingBox.put('custom', _settings);
   }
 
   // Update and persist the Locale based on the user's selection.
@@ -47,6 +47,6 @@ class SettingsController extends ChangeNotifier {
     if (newLocale == _settings.localeEnum) return;
     _settings.locale = newLocale.languageCode;
     notifyListeners();
-    await setting_box.put('custom', _settings);
+    await settingBox.put('custom', _settings);
   }
 }

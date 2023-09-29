@@ -73,13 +73,19 @@ class _MDMFormState extends State<MDMForm> {
       TextEditingController();
 
   @override
+  void initState() {
+    _num_of_student_controller.text = '0';
+    themeMode = widget.controller.themeMode;
+    priceChart = getVpriceChart(day: weekday[date.weekday]!);
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     _num_of_student_controller.text = '0';
     for_calss = MDMRouteInfo.fromMap(
             ModalRoute.of(context)!.settings.arguments as Map<String, String>)
         .class_type;
-    priceChart = getVpriceChart(day: weekday[date.weekday]!);
-    themeMode = widget.controller.themeMode;
     super.didChangeDependencies();
   }
 
@@ -316,8 +322,6 @@ class _MDMFormState extends State<MDMForm> {
   }
 
   SizedBox GetSizedBox(name, {is_head = false, decorated = false}) {
-    // print(tableHeadRowTextStyle);
-    // print(themeMode.toString());
     return SizedBox(
       height: 40,
       child: Container(

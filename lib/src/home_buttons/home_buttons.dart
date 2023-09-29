@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdms/src/MDM/mdm_input_view.dart';
 
 import '../MDM/mdm_inputs.dart';
+import '../mdm/mdm.dart';
 import '../settings/settings_view.dart';
 
 class HomeButtons extends StatelessWidget {
@@ -57,11 +58,8 @@ class Buttons extends StatelessWidget {
               minimumSize: const Size.fromHeight(60), // NEW
             ),
             onPressed: () {
-              Navigator.restorablePushNamed(context, MDMForm.routeName,
-                  arguments: MDMRouteInfo(
-                          title: AppLocalizations.of(context)!.class_i_title,
-                          class_type: 'class_i')
-                      .toMap());
+              Navigator.restorablePushNamed(context,
+                  '/mdm/${AppLocalizations.of(context)!.class_i_title}/5');
             },
             child: Text(AppLocalizations.of(context)!.class_i_title,
                 style: const TextStyle(fontSize: 25, color: Colors.white)),
